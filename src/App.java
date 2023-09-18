@@ -1,12 +1,13 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
 
-        System.out.println(readStudentList("Student List.txt"));
+        System.out.println(generateRandomGroups(readStudentList("Student List.txt"),4));
 
     }
 
@@ -23,5 +24,17 @@ public class App {
             System.out.println(e.getMessage());
         }
         return arr;
+    }
+
+    public static ArrayList<ArrayList<String>> generateRandomGroups(ArrayList<String> studentList,int numOfGroups){
+        ArrayList<ArrayList<String>> groups = new ArrayList<>();
+        Collections.shuffle(studentList);
+        for(int i = 0;i<numOfGroups;i++){
+            groups.add(new ArrayList<String>());
+        }
+        for(int i = 0; i < studentList.size();i++){
+            groups.get(i%numOfGroups).add(studentList.get(i));
+        }
+        return groups;
     }
 }
