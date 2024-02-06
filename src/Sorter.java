@@ -31,7 +31,11 @@ public class Sorter {
         }
      }
 
-     public static void sort(int[] arr) {
-        insertionSort(arr);
+    public static void sort(int[] array) {
+        if (array.length < 10) {
+            insertionSort(array);
+        } else {
+            selectionSort(array);
+        }
     }
 }
